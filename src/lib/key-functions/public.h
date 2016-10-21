@@ -73,5 +73,12 @@
 	void kbfun_layer_pop_numpad              (void);
 	void kbfun_mediakey_press_release        (void);
 
+	// custom
+	void kbfun_altgr_press_release           (void);
+    void kbfun_altgr_e_press_release         (void);
+    void kbfun_altgr_n_press_release         (void);
+    void kbfun_vim_save                      (void);
+    void kbfun_vim_save_and_quit             (void);
+
 #endif
 

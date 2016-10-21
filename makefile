@@ -23,9 +23,9 @@ include src/makefile-options
 
 # which layouts to compile (will override the variable in src/makefile-options)
 # --- default
-LAYOUT := qwerty-kinesis-mod
+LAYOUT := dvorak-qwerty-mod-sito
 # --- all
-LAYOUTS := qwerty-kinesis-mod dvorak-kinesis-mod colemak-symbol-mod workman-p-kinesis-mod
+LAYOUTS := qwerty-kinesis-mod dvorak-kinesis-mod dvorak-qwerty-mod-sito colemak-symbol-mod workman-p-kinesis-mod
 
 # system specific stuff
 UNAME := $(shell uname)
@@ -58,8 +58,8 @@ SCRIPTS := build-scripts
 all: dist
 
 clean:
-	git clean -dX  # remove ignored files and directories
-	-rm -r '$(BUILD)'
+	git clean -dXf  # remove ignored files and directories
+	-rm -rf '$(BUILD)'
 
 checkin:
 	-git commit -a
