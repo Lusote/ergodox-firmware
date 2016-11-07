@@ -215,7 +215,19 @@ void kbfun_mediakey_press_release(void) {
 /* ----------------------------------------------------------------------------
  * symbol functions
  * ------------------------------------------------------------------------- */
-
+/*
+ * [name]
+ *   SingleQuote + press|release
+ *
+ * [description]
+ *   Generate a SingleQuote (acute accent) press or release before the normal keypress or
+ *   keyrelease
+ */
+void kbfun_tilde_pc_press_release(void) {
+  uint8_t keycode = kb_layout_get(LAYER, ROW, COL);
+  
+  write_alted_code(keycode);
+}
 /*
  * [name]
  *   AltGr + e + press|release
@@ -224,56 +236,36 @@ void kbfun_mediakey_press_release(void) {
  *   Generate a 'AltGr + e' (acute accent) press or release before the normal keypress or
  *   keyrelease
  */
-void kbfun_altgr_e_press_release(void) {
+void kbfun_tilde_mac_press_release(void) {
+  uint8_t keycode = kb_layout_get(LAYER, ROW, COL);
   /* Remember old state of shift before disabling it */
   bool right_shift_was_pressed = _kbfun_is_pressed(KEY_RightShift); 
   bool left_shift_was_pressed = _kbfun_is_pressed(KEY_LeftShift); 
   _kbfun_press_release(false, KEY_RightShift);
   _kbfun_press_release(false, KEY_LeftShift);
 
-  _kbfun_press_release(true, KEY_RightAlt);
-  _kbfun_press_release(true, KEY_e_E);
-  usb_keyboard_send();
-  _delay_ms(MAKEFILE_DEBOUNCE_TIME);
+  write_alted_code(KEY_e_E);
 
-  _kbfun_press_release(false, KEY_RightAlt);
-  _kbfun_press_release(false, KEY_e_E);
-  usb_keyboard_send();
-  _delay_ms(MAKEFILE_DEBOUNCE_TIME);
- 
   _kbfun_press_release(right_shift_was_pressed, KEY_RightShift);
   _kbfun_press_release(left_shift_was_pressed, KEY_LeftShift);
-  kbfun_press_release();
+
+  write_code(keycode);
 }
 
 /*
  + * [name]
- + *   AltGr + n + press|release
+ + *   AltGr + n
  + *
  + * [description]
- + *   Generate a 'AltGr + n' (acute accent) press or release before the normal keypress or
- + *   keyrelease
+ + *   Generate a 'ñ'
  + */
- void kbfun_altgr_n_press_release(void) {
-   /* Remember old state of shift before disabling it */
-   /*bool right_shift_was_pressed = _kbfun_is_pressed(KEY_RightShift); 
-   bool left_shift_was_pressed = _kbfun_is_pressed(KEY_LeftShift); 
-   _kbfun_press_release(false, KEY_RightShift);
-   _kbfun_press_release(false, KEY_LeftShift);*/
- 
-   _kbfun_press_release(true, KEY_RightAlt);
-   _kbfun_press_release(true, KEY_n_N);
-   usb_keyboard_send();
-   _delay_ms(MAKEFILE_DEBOUNCE_TIME);
- 
-   _kbfun_press_release(false, KEY_RightAlt);
-   _kbfun_press_release(false, KEY_n_N);
-   usb_keyboard_send();
-   _delay_ms(MAKEFILE_DEBOUNCE_TIME);
-  
-   /*_kbfun_press_release(right_shift_was_pressed, KEY_RightShift);
-   _kbfun_press_release(left_shift_was_pressed, KEY_LeftShift);
-   kbfun_press_release();*/
+ void kbfun_altgr_n_pc_press_release(void) {
+  write_alted_code(KEY_n_N);
+ }
+
+ void kbfun_altgr_n_mac_press_release(void) {
+  write_alted_code(KEY_n_N);
+  write_code(KEY_n_N);
  }
 
 /* ----------------------------------------------------------------------------

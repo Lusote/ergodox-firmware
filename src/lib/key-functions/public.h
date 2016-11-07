@@ -75,13 +75,18 @@
 
 	// custom
 	void kbfun_altgr_press_release           (void);
-    void kbfun_altgr_e_press_release         (void);
-    void kbfun_altgr_n_press_release         (void);
-    void kbfun_vim_save                      (void);
-    void kbfun_vim_save_and_quit             (void);
+    void kbfun_altgr_n_pc_press_release      (void);
+    void kbfun_altgr_n_mac_press_release     (void);
+
+    void kbfun_tilde_pc_press_release		 (void);
+    void kbfun_tilde_mac_press_release		 (void);
 
     // copy, cut, and paste
     void kbfun_mod_mac_press_release        (void);
     void kbfun_mod_wl_press_release         (void);
+
+    // macro
+    void kbfun_vim_save                      (void);
+    void kbfun_vim_save_and_quit             (void);
 #endif
 
