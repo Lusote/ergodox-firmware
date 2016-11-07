@@ -27,6 +27,55 @@
 #define  IS_PRESSED    main_arg_is_pressed
 #define  WAS_PRESSED   main_arg_was_pressed
 
+/* ----------------------------------------------------------------------------
+ * private utility functions
+ * ------------------------------------------------------------------------- */
+void write_code(uint8_t keycode) {
+  _kbfun_press_release(true, keycode);
+  usb_keyboard_send();
+  _delay_ms(MAKEFILE_DEBOUNCE_TIME);
+
+  _kbfun_press_release(false, keycode);
+  usb_keyboard_send();
+  _delay_ms(MAKEFILE_DEBOUNCE_TIME);
+}
+
+void write_shifted_code(uint8_t keycode) {
+  _kbfun_press_release(true, KEY_RightShift);
+  _kbfun_press_release(true, keycode);
+  usb_keyboard_send();
+  _delay_ms(MAKEFILE_DEBOUNCE_TIME);
+
+  _kbfun_press_release(false, KEY_RightShift);
+  _kbfun_press_release(false, keycode);
+  usb_keyboard_send();
+  _delay_ms(MAKEFILE_DEBOUNCE_TIME);
+}
+
+void write_ctrled_code(uint8_t keycode) {
+  _kbfun_press_release(true, KEY_LeftControl);
+  _kbfun_press_release(true, keycode);
+  usb_keyboard_send();
+  _delay_ms(MAKEFILE_DEBOUNCE_TIME);
+
+  _kbfun_press_release(false, KEY_LeftControl);
+  _kbfun_press_release(false, keycode);
+  usb_keyboard_send();
+  _delay_ms(MAKEFILE_DEBOUNCE_TIME);
+}
+
+void write_guied_code(uint8_t keycode) {
+  _kbfun_press_release(true, KEY_LeftGUI);
+  _kbfun_press_release(true, keycode);
+  usb_keyboard_send();
+  _delay_ms(MAKEFILE_DEBOUNCE_TIME);
+
+  _kbfun_press_release(false, KEY_LeftGUI);
+  _kbfun_press_release(false, keycode);
+  usb_keyboard_send();
+  _delay_ms(MAKEFILE_DEBOUNCE_TIME);
+}
+
 
 // ----------------------------------------------------------------------------
 
@@ -298,32 +347,28 @@ void kbfun_vim_save_and_quit(void) {
 }
 
 /* ----------------------------------------------------------------------------
- * private utility functions
+ * Copy, Cut and Paste
  * ------------------------------------------------------------------------- */
-void write_code(uint8_t keycode) {
-  _kbfun_press_release(true, keycode);
-  usb_keyboard_send();
-  _delay_ms(MAKEFILE_DEBOUNCE_TIME);
-
-  _kbfun_press_release(false, keycode);
-  usb_keyboard_send();
-  _delay_ms(MAKEFILE_DEBOUNCE_TIME);
+void kbfun_copy_mac_press_release(void) {
+  write_guied_code(KEY_c_C);
 }
 
-void write_shifted_code(uint8_t keycode) {
-  _kbfun_press_release(true, KEY_RightShift);
-  _kbfun_press_release(true, keycode);
-  usb_keyboard_send();
-  _delay_ms(MAKEFILE_DEBOUNCE_TIME);
+void kbfun_copy_wl_press_release(void) {
+  write_ctrled_code(KEY_c_C);
+} 
 
-  _kbfun_press_release(false, KEY_RightShift);
-  _kbfun_press_release(false, keycode);
-  usb_keyboard_send();
-  _delay_ms(MAKEFILE_DEBOUNCE_TIME);
+void kbfun_cut_mac_press_release(void) {
+  write_guied_code(KEY_x_X);
 }
 
+void kbfun_cut_wl_press_release(void) {
+  write_ctrled_code(KEY_x_X);
+}
 
+void kbfun_paste_mac_press_release(void) {
+  write_guied_code(KEY_v_V);
+}
 
-
-/* ----------------------------------------------------------------------------
- * ------------------------------------------------------------------------- */
+void kbfun_paste_wl_press_release(void) {
+  write_ctrled_code(KEY_v_V);
+}
