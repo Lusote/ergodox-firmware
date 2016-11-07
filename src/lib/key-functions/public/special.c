@@ -30,52 +30,37 @@
 /* ----------------------------------------------------------------------------
  * private utility functions
  * ------------------------------------------------------------------------- */
-void write_code(uint8_t keycode) {
+void _write_combined_code(uint8_t combined, uint8_t keycode) {
+  _kbfun_press_release(true, combined);
   _kbfun_press_release(true, keycode);
   usb_keyboard_send();
   _delay_ms(MAKEFILE_DEBOUNCE_TIME);
 
+  _kbfun_press_release(false, combined);
   _kbfun_press_release(false, keycode);
   usb_keyboard_send();
   _delay_ms(MAKEFILE_DEBOUNCE_TIME);
+}
+
+void write_code(uint8_t keycode) {
+  _write_combined_code(0, keycode);
 }
 
 void write_shifted_code(uint8_t keycode) {
-  _kbfun_press_release(true, KEY_RightShift);
-  _kbfun_press_release(true, keycode);
-  usb_keyboard_send();
-  _delay_ms(MAKEFILE_DEBOUNCE_TIME);
-
-  _kbfun_press_release(false, KEY_RightShift);
-  _kbfun_press_release(false, keycode);
-  usb_keyboard_send();
-  _delay_ms(MAKEFILE_DEBOUNCE_TIME);
+  _write_combined_code(KEY_RightShift, keycode);
 }
 
 void write_ctrled_code(uint8_t keycode) {
-  _kbfun_press_release(true, KEY_LeftControl);
-  _kbfun_press_release(true, keycode);
-  usb_keyboard_send();
-  _delay_ms(MAKEFILE_DEBOUNCE_TIME);
+  _write_combined_code(KEY_LeftControl, keycode);
+}
 
-  _kbfun_press_release(false, KEY_LeftControl);
-  _kbfun_press_release(false, keycode);
-  usb_keyboard_send();
-  _delay_ms(MAKEFILE_DEBOUNCE_TIME);
+void write_alted_code(uint8_t keycode) {
+  _write_combined_code(KEY_RightAlt, keycode);
 }
 
 void write_guied_code(uint8_t keycode) {
-  _kbfun_press_release(true, KEY_LeftGUI);
-  _kbfun_press_release(true, keycode);
-  usb_keyboard_send();
-  _delay_ms(MAKEFILE_DEBOUNCE_TIME);
-
-  _kbfun_press_release(false, KEY_LeftGUI);
-  _kbfun_press_release(false, keycode);
-  usb_keyboard_send();
-  _delay_ms(MAKEFILE_DEBOUNCE_TIME);
+  _write_combined_code(KEY_LeftGUI, keycode);
 }
-
 
 // ----------------------------------------------------------------------------
 
@@ -349,26 +334,12 @@ void kbfun_vim_save_and_quit(void) {
 /* ----------------------------------------------------------------------------
  * Copy, Cut and Paste
  * ------------------------------------------------------------------------- */
-void kbfun_copy_mac_press_release(void) {
-  write_guied_code(KEY_c_C);
+void kbfun_mod_mac_press_release(void) {
+  uint8_t keycode = kb_layout_get(LAYER, ROW, COL);
+  write_guied_code(keycode);
 }
 
-void kbfun_copy_wl_press_release(void) {
-  write_ctrled_code(KEY_c_C);
-} 
-
-void kbfun_cut_mac_press_release(void) {
-  write_guied_code(KEY_x_X);
-}
-
-void kbfun_cut_wl_press_release(void) {
-  write_ctrled_code(KEY_x_X);
-}
-
-void kbfun_paste_mac_press_release(void) {
-  write_guied_code(KEY_v_V);
-}
-
-void kbfun_paste_wl_press_release(void) {
-  write_ctrled_code(KEY_v_V);
+void kbfun_mod_wl_press_release(void) {
+  uint8_t keycode = kb_layout_get(LAYER, ROW, COL);
+  write_ctrled_code(keycode);
 }

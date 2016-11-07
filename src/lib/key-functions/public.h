@@ -81,11 +81,7 @@
     void kbfun_vim_save_and_quit             (void);
 
     // copy, cut, and paste
-    void kbfun_copy_mac_press_release        (void);
-    void kbfun_copy_wl_press_release         (void);
-    void kbfun_cut_mac_press_release         (void);
-    void kbfun_cut_wl_press_release          (void);
-    void kbfun_paste_mac_press_release       (void);
-    void kbfun_paste_wl_press_release        (void);
+    void kbfun_mod_mac_press_release        (void);
+    void kbfun_mod_wl_press_release         (void);
 #endif
 
