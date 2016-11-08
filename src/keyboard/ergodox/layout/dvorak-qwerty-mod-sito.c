@@ -99,8 +99,8 @@ KB_MATRIX_LAYER(
                   KEY_d_D,  KEY_h_H,  KEY_t_T,  KEY_n_N,  KEY_s_S,  KEY_RightBracket_RightBrace,  
               _bracketR,  KEY_b_B,  KEY_m_M,  KEY_w_W,  KEY_v_V,  KEY_z_Z,  KEY_0_RightParenthesis, 
                   5, KEY_LeftArrow,  KEY_DownArrow,  KEY_UpArrow,  KEY_RightArrow,  
-  0,  KEY_LeftAlt, 
-  0,  0,  0,  
+  KEY_PageUp,  KEY_LeftAlt, 
+  KEY_PageDown,  0,  0,  
   3,  KEY_ReturnEnter,  KEY_Spacebar  
 ),
 // LAYER 1: Windows and Linux dvorak
@@ -122,8 +122,8 @@ KB_MATRIX_LAYER(
                   KEY_d_D,  KEY_h_H,  KEY_t_T,  KEY_n_N,  KEY_s_S,  KEY_RightBracket_RightBrace,  
               _bracketR,  KEY_b_B,  KEY_m_M,  KEY_w_W,  KEY_v_V,  KEY_z_Z,  KEY_0_RightParenthesis, 
                   6, KEY_LeftArrow,  KEY_DownArrow,  KEY_UpArrow,  KEY_RightArrow,  
-  0,  KEY_LeftAlt, 
-  0,  0,  0,  
+  KEY_PageUp,  KEY_LeftAlt, 
+  KEY_PageDown,  0,  0,  
   3,  KEY_ReturnEnter,  KEY_Spacebar  
 ),
 // LAYER 2: Qwerty
@@ -265,8 +265,8 @@ KB_MATRIX_LAYER(
                     kprrel, kprrel, kprrel, kprrel, kprrel, kprrel, 
               sshprre, kprrel, kprrel, kprrel, kprrel, kprrel, sshprre, 
                     lpush5, kprrel, kprrel, kprrel, kprrel,
-  NULL, kprrel, 
-  NULL, NULL, NULL, 
+  kprrel, kprrel, 
+  kprrel, NULL, NULL, 
   lpush3, kprrel, kprrel  
 ),
 // LAYER 1
@@ -288,8 +288,8 @@ KB_MATRIX_LAYER(
                     kprrel, kprrel, kprrel, kprrel, kprrel, kprrel, 
               sshprre, kprrel, kprrel, kprrel, kprrel, kprrel, sshprre, 
                     lpush6, kprrel, kprrel, kprrel, kprrel, 
-  NULL, kprrel, 
-  NULL, NULL, NULL, 
+  kprrel, kprrel, 
+  kprrel, NULL, NULL, 
   lpush3, kprrel, kprrel  
 ),
 // LAYER 2
@@ -431,8 +431,8 @@ KB_MATRIX_LAYER(
                       kprrel, kprrel, kprrel, kprrel, kprrel, kprrel, 
                 sshprre, kprrel, kprrel, kprrel, kprrel, kprrel, sshprre, 
                        lpop5, kprrel, kprrel, kprrel, kprrel,
-  NULL, kprrel, 
-  NULL, NULL, NULL, 
+  kprrel, kprrel, 
+  kprrel, NULL, NULL, 
   lpop3, kprrel, kprrel  
 ),
 // LAYER 1
@@ -454,8 +454,8 @@ KB_MATRIX_LAYER(
                       kprrel, kprrel, kprrel, kprrel, kprrel, kprrel, 
                 sshprre, kprrel, kprrel, kprrel, kprrel, kprrel, sshprre, 
                        lpop6, kprrel, kprrel, kprrel, kprrel,
-  NULL, kprrel, 
-  NULL, NULL, NULL, 
+  kprrel, kprrel, 
+  kprrel, NULL, NULL, 
   lpop3, kprrel, kprrel  
 ),
 // LAYER 2
