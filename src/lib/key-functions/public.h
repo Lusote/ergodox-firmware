@@ -80,10 +80,15 @@
 
     void kbfun_tilde_pc_press_release		 (void);
     void kbfun_tilde_mac_press_release		 (void);
+    void kbfun_dieresis_mac_press_release	 (void);
+    void kbfun_dieresis_pc_press_release	 (void);
 
     // copy, cut, and paste
-    void kbfun_mod_mac_press_release        (void);
-    void kbfun_mod_wl_press_release         (void);
+    void kbfun_mod_mac_press_release         (void);
+    void kbfun_mod_wl_press_release          (void);
+
+    // alt + gui
+    void kbfun_mod_mac_alt_press_release	 (void);
 
     // macro
     void kbfun_vim_save                      (void);

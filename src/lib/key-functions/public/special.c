@@ -30,16 +30,22 @@
 /* ----------------------------------------------------------------------------
  * private utility functions
  * ------------------------------------------------------------------------- */
-void _write_combined_code(uint8_t combined, uint8_t keycode) {
-  _kbfun_press_release(true, combined);
+void _write_2_combined_code(uint8_t combined_a, uint8_t combined_b, uint8_t keycode) {
+  _kbfun_press_release(true, combined_a);
+  _kbfun_press_release(true, combined_b);
   _kbfun_press_release(true, keycode);
   usb_keyboard_send();
   _delay_ms(MAKEFILE_DEBOUNCE_TIME);
 
-  _kbfun_press_release(false, combined);
+  _kbfun_press_release(false, combined_a);
+  _kbfun_press_release(false, combined_b);
   _kbfun_press_release(false, keycode);
   usb_keyboard_send();
   _delay_ms(MAKEFILE_DEBOUNCE_TIME);
+}
+
+void _write_combined_code(uint8_t combined, uint8_t keycode) {
+  _write_2_combined_code(0, combined, keycode);
 }
 
 void write_code(uint8_t keycode) {
@@ -60,6 +66,10 @@ void write_alted_code(uint8_t keycode) {
 
 void write_guied_code(uint8_t keycode) {
   _write_combined_code(KEY_LeftGUI, keycode);
+}
+
+void write_guied_alted_code(uint8_t keycode) {
+  _write_2_combined_code(KEY_LeftGUI, KEY_RightAlt, keycode);
 }
 
 // ----------------------------------------------------------------------------
@@ -215,11 +225,38 @@ void kbfun_mediakey_press_release(void) {
 /* ----------------------------------------------------------------------------
  * symbol functions
  * ------------------------------------------------------------------------- */
+
+ /*
+ * [name]
+ *   Special char:
+ *   e = tilde
+ *   u = dieresis
+ *
+ * [description]
+ *   See: https://forlang.wsu.edu/help-pages/help-pages-keyboards-os-x/
+ */
+void kbfun_special_mac_press_release(uint8_t mod, uint8_t keycode) {
+  
+  /* Remember old state of shift before disabling it */
+  bool right_shift_was_pressed = _kbfun_is_pressed(KEY_RightShift); 
+  bool left_shift_was_pressed = _kbfun_is_pressed(KEY_LeftShift); 
+  _kbfun_press_release(false, KEY_RightShift);
+  _kbfun_press_release(false, KEY_LeftShift);
+
+  write_alted_code(mod);
+
+  _kbfun_press_release(right_shift_was_pressed, KEY_RightShift);
+  _kbfun_press_release(left_shift_was_pressed, KEY_LeftShift);
+
+  write_code(keycode);
+}
+
 /*
  * [name]
  *   SingleQuote + press|release
  *
  * [description]
+ *   See: https://forlang.wsu.edu/help-pages/microsoft-keyboards-english-us-international/
  *   Generate a SingleQuote (acute accent) press or release before the normal keypress or
  *   keyrelease
  */
@@ -228,28 +265,28 @@ void kbfun_tilde_pc_press_release(void) {
   
   write_alted_code(keycode);
 }
+
+void kbfun_dieresis_pc_press_release(void) {
+  uint8_t keycode = kb_layout_get(LAYER, ROW, COL);
+  write_shifted_code(KEY_SingleQuote_DoubleQuote);
+  write_code(keycode);
+}
 /*
  * [name]
  *   AltGr + e + press|release
- *
- * [description]
- *   Generate a 'AltGr + e' (acute accent) press or release before the normal keypress or
- *   keyrelease
  */
 void kbfun_tilde_mac_press_release(void) {
   uint8_t keycode = kb_layout_get(LAYER, ROW, COL);
-  /* Remember old state of shift before disabling it */
-  bool right_shift_was_pressed = _kbfun_is_pressed(KEY_RightShift); 
-  bool left_shift_was_pressed = _kbfun_is_pressed(KEY_LeftShift); 
-  _kbfun_press_release(false, KEY_RightShift);
-  _kbfun_press_release(false, KEY_LeftShift);
+  kbfun_special_mac_press_release(KEY_e_E, keycode);
+}
 
-  write_alted_code(KEY_e_E);
-
-  _kbfun_press_release(right_shift_was_pressed, KEY_RightShift);
-  _kbfun_press_release(left_shift_was_pressed, KEY_LeftShift);
-
-  write_code(keycode);
+/*
+ * [name]
+ *   AltGr + u + press|release
+ */
+void kbfun_dieresis_mac_press_release(void) {
+  uint8_t keycode = kb_layout_get(LAYER, ROW, COL);
+  kbfun_special_mac_press_release(KEY_u_U, keycode);
 }
 
 /*
@@ -335,3 +372,11 @@ void kbfun_mod_wl_press_release(void) {
   uint8_t keycode = kb_layout_get(LAYER, ROW, COL);
   write_ctrled_code(keycode);
 }
+
+/* ----------------------------------------------------------------------------
+ * Gui + Alt press|release
+ * ------------------------------------------------------------------------- */
+ void kbfun_mod_mac_alt_press_release(void) {
+  uint8_t keycode = kb_layout_get(LAYER, ROW, COL);
+  write_guied_alted_code(keycode);
+ }

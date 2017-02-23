@@ -66,8 +66,11 @@ void kbfun_layer_pop_all(void) {
 #define  altgrprre &kbfun_altgr_press_release
 #define  tildepc  &kbfun_tilde_pc_press_release
 #define  tildemac  &kbfun_tilde_mac_press_release
+#define  dieresispc &kbfun_dieresis_pc_press_release
+#define  dieresismac &kbfun_dieresis_mac_press_release
 #define  enhepc  &kbfun_altgr_n_pc_press_release
 #define  enhemac  &kbfun_altgr_n_mac_press_release
+#define  altgui &kbfun_mod_mac_alt_press_release
 
 #define  vsave     &kbfun_vim_save
 #define  vsaveq    &kbfun_vim_save_and_quit
@@ -172,19 +175,19 @@ KB_MATRIX_LAYER(
 0, 0,     0,
 0, 0, _0_kp
 ),
-// LAYER 4: Empty
+// LAYER 4: Gamer Layer
 KB_MATRIX_LAYER(
   // unused
   0,  
   // left hand
   0,  0,  0,  0,  0,  0,  0,  
+  0,  0,  0,  _W,  0,  0,  0,  
+  0,  0,  _A,  _S,  _D,  0,  
   0,  0,  0,  0,  0,  0,  0,  
-  0,  0,  0,  0,  0,  0,  
-  0,  0,  0,  0,  0,  0,  0,  
-  5,  0,  0,  0,  0,  
+  5,  0,  KEY_RightAlt,  KEY_LeftControl,  KEY_LeftShift,  
   0,  0,  
   0,  0,  0,  
-  0,  0,  0,  
+  _space,  0,  0,  
   // right hand
   0,  0,  0,  0,  0,  0,  0,  
   0,  0,  0,  0,  0,  0,  0,  
@@ -203,7 +206,7 @@ KB_MATRIX_LAYER(
   0,  _1,  0,  0,  0,  0,  0,  
   0,  0,  0,  0,  0,  0,  0,  
   0,  _A,  _O,  _E,  _U,  _I,  
-  0,  0,  0,  0,  0,  0,  0,  
+  0,  _A,  _O,  _E,  _U,  _I,  0,  
   0,  0,  0,  0,  0,  
   0,  0,  
   0,  0,  0,  
@@ -226,7 +229,7 @@ KB_MATRIX_LAYER(
   0,  _1,  0,  0,  0,  0,  0,  
   0,  0,  0,  0,  0,  0,  0,
   0,  _A,  _O,  _E,  _U,  _I,  
-  0,  0,  0,  0,  0,  0,  0,  
+  0,  _A,  _O,  _E,  _U,  _I, 0,  
   0,  0,  0,  0,  0,  
   0,  0,  
   0,  0,  0,  
@@ -344,13 +347,13 @@ KB_MATRIX_LAYER(
   NULL, 
   // left hand
   NULL, NULL, NULL, NULL, NULL, NULL, NULL, 
+  NULL, NULL, NULL, kprrel, NULL, NULL, NULL, 
+  NULL, NULL, kprrel, kprrel, kprrel, NULL, 
   NULL, NULL, NULL, NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, NULL, NULL, NULL, 
-  lpush5, NULL, NULL, NULL, NULL, 
+  lpush5, NULL, kprrel, kprrel, kprrel, 
   NULL, NULL, 
   NULL, NULL, NULL, 
-  NULL, NULL, NULL, 
+  kprrel, NULL, NULL, 
   // right hand
   NULL, NULL, NULL, NULL, NULL, NULL, NULL, 
   NULL, NULL, NULL, NULL, NULL, NULL, NULL, 
@@ -366,23 +369,23 @@ KB_MATRIX_LAYER(
   // unused
   NULL, 
   // left hand
-  NULL, altgrprre, NULL, NULL, NULL, NULL, NULL, 
+  NULL, altgui, NULL, NULL, NULL, NULL, NULL, 
   NULL, NULL, NULL, NULL, NULL, NULL, NULL, 
   NULL, tildemac, tildemac, tildemac, tildemac, tildemac,  
-  NULL, NULL, NULL, NULL, NULL, NULL, NULL, 
+  NULL, dieresismac, dieresismac, dieresismac, dieresismac, dieresismac, NULL, 
   NULL, NULL, NULL, NULL, NULL, 
   NULL, NULL, 
   NULL, NULL, NULL, 
-  dbtldr, NULL, NULL, 
+  NULL, NULL, NULL, 
   // right hand
   NULL, lpop,  lpush1,  lpush2,  lpush3,  lpush4, NULL, 
-  altgrprre, NULL, NULL, NULL, NULL, NULL, NULL, 
+  altgui, NULL, NULL, NULL, NULL, NULL, NULL, 
   NULL, NULL, NULL, enhemac, NULL, mprrel, 
   NULL, NULL, NULL, NULL, NULL, NULL, mprrel, 
   mprrel, mprrel, mprrel, mprrel, mprrel, 
   NULL, NULL, 
   NULL, NULL, NULL, 
-  NULL, NULL, NULL  
+  NULL, NULL, dbtldr  
 ),
 // LAYER 6
 KB_MATRIX_LAYER(
@@ -392,7 +395,7 @@ KB_MATRIX_LAYER(
   NULL, altgrprre, NULL, NULL, NULL, NULL, NULL, 
   NULL, NULL, NULL, NULL, NULL, NULL, NULL, 
   NULL, tildepc, tildepc, tildepc, tildepc, tildepc, 
-  NULL, NULL, NULL, NULL, NULL, NULL, NULL, 
+  NULL, dieresispc, dieresispc, dieresispc, dieresispc, dieresispc, NULL, 
   NULL, NULL, NULL, NULL, NULL, 
   NULL, NULL, 
   NULL, NULL, NULL, 
@@ -405,7 +408,7 @@ KB_MATRIX_LAYER(
   NULL, NULL, NULL, NULL, NULL, 
   NULL, NULL, 
   NULL, NULL, NULL, 
-  NULL, NULL, NULL  
+  NULL, NULL, dbtldr  
 ),
 };
 // ----------------------------------------------------------------------------
@@ -510,13 +513,13 @@ KB_MATRIX_LAYER(
   NULL, 
   // left hand
   NULL, NULL, NULL, NULL, NULL, NULL, NULL, 
+  NULL, NULL, NULL, kprrel, NULL, NULL, NULL, 
+  NULL, NULL, kprrel, kprrel, kprrel, NULL, 
   NULL, NULL, NULL, NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, NULL, NULL, NULL, 
-  lpop5,  NULL, NULL, NULL, NULL, 
+  lpop5,  NULL, kprrel, kprrel, kprrel, 
   NULL, NULL, 
   NULL, NULL, NULL, 
-  NULL, NULL, NULL, 
+  kprrel, NULL, NULL, 
   // right hand
   NULL, NULL, NULL, NULL, NULL, NULL, NULL, 
   NULL, NULL, NULL, NULL, NULL, NULL, NULL, 
@@ -532,7 +535,7 @@ KB_MATRIX_LAYER(
   // unused
   NULL, 
   // left hand
-  NULL, altgrprre, NULL, NULL, NULL, NULL, NULL, 
+  NULL, altgui, NULL, NULL, NULL, NULL, NULL, 
   NULL, NULL, NULL, NULL, NULL, NULL, NULL, 
   NULL, kprrel, kprrel, kprrel, kprrel, kprrel,
   NULL, NULL, NULL, NULL, NULL, NULL, NULL, 
@@ -542,7 +545,7 @@ KB_MATRIX_LAYER(
   NULL, NULL, NULL, 
   // right hand
   NULL, NULL, NULL, NULL, NULL, NULL, NULL, 
-  altgrprre, NULL, NULL, NULL, NULL, NULL, NULL, 
+  altgui, NULL, NULL, NULL, NULL, NULL, NULL, 
   NULL, NULL, NULL, kprrel, NULL, mprrel, 
   NULL, NULL, NULL, NULL, NULL, NULL, mprrel, 
   mprrel, mprrel, mprrel, mprrel, mprrel, 
