@@ -89,6 +89,8 @@
 
     // alt + gui
     void kbfun_mod_mac_alt_press_release	 (void);
+    // ctr + gui
+    void kbfun_mod_mac_ctr_press_release   (void);
 
     // macro
     void kbfun_vim_save                      (void);
