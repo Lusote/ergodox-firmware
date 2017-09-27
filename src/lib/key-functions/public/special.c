@@ -72,6 +72,11 @@ void write_guied_alted_code(uint8_t keycode) {
   _write_2_combined_code(KEY_LeftGUI, KEY_RightAlt, keycode);
 }
 
+void write_guied_ctred_code(uint8_t keycode) {
+  _write_2_combined_code(KEY_LeftGUI, KEY_LeftControl, keycode);
+}
+
+
 // ----------------------------------------------------------------------------
 
 /*
@@ -379,4 +384,12 @@ void kbfun_mod_wl_press_release(void) {
  void kbfun_mod_mac_alt_press_release(void) {
   uint8_t keycode = kb_layout_get(LAYER, ROW, COL);
   write_guied_alted_code(keycode);
+ }
+
+/* ----------------------------------------------------------------------------
+ * Gui + Ctr press|release
+ * ------------------------------------------------------------------------- */
+ void kbfun_mod_mac_ctr_press_release(void) {
+  uint8_t keycode = kb_layout_get(LAYER, ROW, COL);
+  write_guied_ctred_code(keycode);
  }
