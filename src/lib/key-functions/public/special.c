@@ -11,6 +11,7 @@
 #include <stdint.h>
 #include "../../../lib-other/pjrc/usb_keyboard/usb_keyboard.h"
 #include "../../../lib/usb/usage-page/keyboard.h"
+#include "../../../lib/usb/usage-page/keyboard--short-names.h"
 #include "../../../keyboard/layout.h"
 #include "../../../main.h"
 #include "../public.h"
@@ -393,3 +394,13 @@ void kbfun_mod_wl_press_release(void) {
   uint8_t keycode = kb_layout_get(LAYER, ROW, COL);
   write_guied_ctred_code(keycode);
  }
+
+/* ----------------------------------------------------------------------------
+ * F2 + Ctrl+C
+ * ------------------------------------------------------------------------- */
+void macro_f2_ctrl_mod(void) {
+  write_code(_F2);
+  uint8_t keycode = kb_layout_get(LAYER, ROW, COL);
+  write_ctrled_code(keycode);
+  write_code(_enter);
+}

@@ -79,6 +79,7 @@ void kbfun_layer_pop_all(void) {
 
 #define  modmac     &kbfun_mod_mac_press_release
 #define  modwl      &kbfun_mod_wl_press_release
+#define  macrf2ctl  &macro_f2_ctrl_mod
 
 // ----------------------------------------------------------------------------
 
@@ -187,9 +188,9 @@ KB_MATRIX_LAYER(
 *   |      |      |      |      |      |                                       |   0  |      |      |      |      |
 *   `----------------------------------'                                       `----------------------------------'
 *                                        ,-------------.       ,-------------.
-*                                        |      |      |       |      |      |
+*                                        |F2+Cp |F2+Cut|       |      |      |
 *                                 ,------|------|------|       |------+------+------.
-*                                 |      |      |      |       |      |      |      |
+*                                 |      |      |F2+Pst|       |      |      |      |
 *                                 |      |      |------|       |------|      |      |
 *                                 |      |      |      |       |      |      |      |
 *                                 `--------------------'       `--------------------'
@@ -203,8 +204,8 @@ KB_MATRIX_LAYER(
   0,  KEY_F11,  KEY_F12,  0,  0,  0,  
   0,  0,  0,  0,  0,  0,  0,  
   4,  0,  0,  0,  0,  
-  0,  0,  
-  0,  0,  0,  
+  _C,  _X,  
+  0,  0,  _V,  
   0,  0,  0,  
   // right hand
     0, 0,     0,        0,        0,        0, 0,
@@ -409,8 +410,8 @@ KB_MATRIX_LAYER(
   NULL, kprrel, kprrel, NULL, NULL, NULL, 
   NULL, NULL, NULL, NULL, NULL, NULL, NULL, 
   lpush4, NULL, NULL, NULL, NULL, 
-  NULL, NULL, 
-  NULL, NULL, NULL, 
+  macrf2ctl, macrf2ctl, 
+  NULL, NULL, macrf2ctl, 
   NULL, NULL, NULL, 
   // right hand
   NULL, NULL, NULL, NULL, NULL, NULL, NULL, 

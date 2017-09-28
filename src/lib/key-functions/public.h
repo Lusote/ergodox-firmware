@@ -95,5 +95,6 @@
     // macro
     void kbfun_vim_save                      (void);
     void kbfun_vim_save_and_quit             (void);
+    void macro_f2_ctrl_mod					 (void);
 #endif
 
