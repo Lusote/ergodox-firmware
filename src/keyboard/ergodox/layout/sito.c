@@ -594,7 +594,7 @@ KB_MATRIX_LAYER(
   NULL, 
   // left hand
   NULL, altgui, NULL, NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, altgrprre, NULL, NULL, ctrgui, 
+  NULL, NULL, NULL, altgrprre, NULL, NULL, NULL, 
   NULL, kprrel, kprrel, kprrel, kprrel, kprrel,
   NULL, NULL, NULL, NULL, NULL, NULL, NULL, 
   NULL, NULL, NULL, NULL, NULL, 
